@@ -1,5 +1,7 @@
-Описание файла /etc/apache2/sites-available$/config.conf
-------------------------
+# Описание файла /etc/apache2/sites-available$/config.conf
+
+
+```
 <VirtualHost *:80>
 
     ServerName autoandev.loc
@@ -16,12 +18,14 @@
     </Directory>
 
 </VirtualHost>
+```
 
 ------------------------
 
-> Создан новый пользователь в MySql с именем useryii и база данных с именем autodb2. <
-> Юзеру предоставлены права доступа только к этой базе. <
+* Создан новый пользователь в MySql с именем useryii и база данных с именем autodb2. <
+* Юзеру предоставлены права доступа только к этой базе. <
 
+```bash
 mysql> SHOW GRANTS FOR useryii@localhost;
 +--------------------------------------------------------------+
 | Grants for useryii@localhost                                 |
@@ -30,10 +34,9 @@ mysql> SHOW GRANTS FOR useryii@localhost;
 | GRANT ALL PRIVILEGES ON `autodb2`.* TO 'useryii'@'localhost' |
 +--------------------------------------------------------------+
 2 rows in set (0,02 sec)
+```
 
-mysql> 
 
-
-> Настроен prettyUrl <
+* Настроен prettyUrl
 
 -------------------------
