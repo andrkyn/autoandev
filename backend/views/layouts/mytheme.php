@@ -37,9 +37,8 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'data bases', 'url' => ['/brand']],
         ['label' => 'Home', 'url' => ['/site/index']],
-
+        ['label' => 'data bases', 'url' => ['/brand']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -60,14 +59,32 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+
+
+  <!-- добавленно для пеерхода по страницам -->
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><?= Html::a('Главная','/admin/site/') ?></li>
+            <li role="presentation"><?= Html::a('Каталог','/admin/category/') ?></li>
+            <li role="presentation"><?= Html::a('Бренд','/admin/brand/') ?></li>
+            <li role="presentation"><?= Html::a('Автомобили','/admin/car/') ?></li>
+            <li role="presentation"><?= Html::a('autodb2','/testpg/') ?></li>
+            <li role="presentation"><?= Html::a('show_data_brand','/admin/showdb/') ?></li>
+
+        </ul>
+        <!-- end переход по тсраницам страницам -->
+
+
         <?= $content ?>
     </div>
+
 </div>
+
 
 <footer class="footer">
     <div class="container">

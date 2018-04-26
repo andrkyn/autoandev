@@ -13,6 +13,10 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
+   //add model from backend
+use common\models\Brand;
+use yii\web\HttpException;
+
 /**
  * Site controller
  */
@@ -70,10 +74,21 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
+
+
+    /*public function actionIndex()
     {
         return $this->render('index');
+    }*/
+
+
+    public function actionIndex()
+    {
+        $brands = Brand::find()->all();
+
+        return $this->render('index', compact('brands'));
     }
+
 
     /**
      * Logs in a user.
