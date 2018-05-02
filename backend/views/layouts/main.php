@@ -40,6 +40,7 @@ AppAsset::register($this);
         ['label' => 'Бренд', 'url' => Url::to(['brand/'])],
         ['label' => 'Категория', 'url' => Url::to(['category/'])],
         ['label' => 'Автомобили', 'url' => Url::to(['car/'])],
+        ['label' => 'Showdb', 'url' => Url::to(['brand/showdb'])], //страница брендов для наглядности
         ['label' => '|'],
         ['label' => 'Home', 'url' => Url::to(['site/'])],
 

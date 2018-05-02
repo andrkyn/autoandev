@@ -90,7 +90,7 @@ class Car extends \yii\db\ActiveRecord
      */
     public function getBrand()
     {
-        return $this->hasOne(Brand::class(), ['id' => 'brandId']);
+        return $this->hasOne(Brand::className(), ['id' => 'brandId']);
     }
 
     /**
@@ -98,6 +98,6 @@ class Car extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::class(), ['id' => 'categoryId']);
+        return $this->hasOne(Category::className(), ['id' => 'categoryId']);
     }
 }

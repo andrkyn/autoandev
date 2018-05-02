@@ -29,7 +29,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::class(),
+                'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
@@ -45,7 +45,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::class(),
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],

@@ -45,7 +45,7 @@ class CarController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'mytheme';
+        //$this->layout = 'mytheme';
         $searchModel = new CarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
