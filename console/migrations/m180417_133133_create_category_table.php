@@ -14,12 +14,12 @@ class m180417_133133_create_category_table extends Migration
     {
         $this->createTable('category', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(30)->notNull(),
+            'name' => $this->string(30),
             'slug' => $this->string(30)->notNull()->unique(),
             'content' => $this->text(),
             'img' => $this->string(),
             'upDate' => $this->integer()->notNull(),
-            'description' => $this->string()
+            'description' => $this->text()
         ]);
     }
 

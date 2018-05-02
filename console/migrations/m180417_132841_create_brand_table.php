@@ -14,11 +14,11 @@ class m180417_132841_create_brand_table extends Migration
     {
         $this->createTable('brand', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(30)->notNull(),
+            'name' => $this->string(30),
             'slug' => $this->string(30)->notNull()->unique(),
-            'img' => $this->string()->notNull(),
+            'img' => $this->string(),
             'upDate' => $this->integer()->notNull(),
-            'description' => $this->string()
+            'description' => $this->text()
         ]);
     }
 

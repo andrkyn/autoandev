@@ -14,25 +14,25 @@ class m180417_133459_create_car_table extends Migration
     {
         $this->createTable('car', [
             'id' => $this->primaryKey(),
-            'brandId' => $this->integer()->notNull(),
+            'brandId' => $this->integer(),
             'categoryId' => $this->integer()->notNull(),
-            'name' => $this->string(30)->notNull(),
+            'name' => $this->string(30),
             'slug' => $this->string(30)->notNull()->unique(),
             'title' => $this->string(),
             'content' => $this->text(),
-            'price' => $this->integer(6)->notNull(),
+            'price' => $this->integer(6),
             'transmission' => $this->string()->notNull(),
             'engine' => $this->string()->notNull(),
-            'speed' => $this->integer(3)->notNull(),
+            'speed' => $this->integer(3),
             'fuelConsumption' => $this->integer(2),
             'drive' => $this->string()->notNull(),
             'trunkVolume' => $this->integer(3),
             'bodyStyle' => $this->string()->notNull(),
             'color' => $this->string(),
-            'year' => $this->integer(4)->notNull(),
-            'img' => $this->string()->notNull(),
+            'year' => $this->integer(4),
+            'img' => $this->string(),
             'upDate' => $this->integer(11)->notNull(),
-            'description' => $this->string()
+            'description' => $this->text()
         ]);
 
         $this->createIndex('idx-car-brandId', 'car', 'brandId');
