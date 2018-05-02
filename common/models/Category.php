@@ -60,6 +60,6 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getCars()
     {
-        return $this->hasMany(Car::className(), ['categoryId' => 'id']);
+        return $this->hasMany(Car::class, ['categoryId' => 'id']);
     }
 }

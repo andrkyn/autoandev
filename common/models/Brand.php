@@ -57,6 +57,6 @@ class Brand extends \yii\db\ActiveRecord
      */
     public function getCars()
     {
-        return $this->hasMany(Car::className(), ['brandId' => 'id']);
+        return $this->hasMany(Car::class, ['brandId' => 'id']);
     }
 }
