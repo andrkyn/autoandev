@@ -45,7 +45,7 @@ class BrandController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'mytheme';
+        //$this->layout = 'mytheme';
         $searchModel = new BrandSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

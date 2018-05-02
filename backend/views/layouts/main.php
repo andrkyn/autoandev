@@ -37,7 +37,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'data bases', 'url' => Url::to(['brand/'])],
+        ['label' => 'Бренд', 'url' => Url::to(['brand/'])],
+        ['label' => 'Категория', 'url' => Url::to(['category/'])],
+        ['label' => 'Автомобили', 'url' => Url::to(['car/'])],
+        ['label' => '|'],
         ['label' => 'Home', 'url' => Url::to(['site/'])],
 
     ];
@@ -45,7 +48,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => Url::to(['site/login'])];
     } else {
         $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
+            . Html::beginForm(Url::to(['site/logout']), 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
