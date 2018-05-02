@@ -51,8 +51,8 @@ class Car extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['name'], 'string', 'max' => 30],
             [['title', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description'], 'string', 'max' => 255],
-            [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::className(), 'targetAttribute' => ['brandId' => 'id']],
-            [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['categoryId' => 'id']],
+            [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class(), 'targetAttribute' => ['brandId' => 'id']],
+            [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class(), 'targetAttribute' => ['categoryId' => 'id']],
         ];
     }
 
@@ -90,7 +90,7 @@ class Car extends \yii\db\ActiveRecord
      */
     public function getBrand()
     {
-        return $this->hasOne(Brand::className(), ['id' => 'brandId']);
+        return $this->hasOne(Brand::class(), ['id' => 'brandId']);
     }
 
     /**
@@ -98,6 +98,6 @@ class Car extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'categoryId']);
+        return $this->hasOne(Category::class(), ['id' => 'categoryId']);
     }
 }
