@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -36,14 +37,14 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Admin', 'url' => ['/admin/']],
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Admin', 'url' => Url::to(['admin/'])],
+        ['label' => 'Home', 'url' => Url::to(['site/index'])],
+        ['label' => 'About', 'url' => Url::to(['site/about'])],
+        ['label' => 'Contact', 'url' => Url::to(['site/contact'])],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => Url::to(['site/signup'])];
+        $menuItems[] = ['label' => 'Login', 'url' => Url::to(['site/login'])];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
