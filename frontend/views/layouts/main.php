@@ -37,14 +37,14 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Admin', 'url' => Url::to(['admin/'])],
-        ['label' => 'Home', 'url' => Url::to(['site/index'])],
-        ['label' => 'About', 'url' => Url::to(['site/about'])],
-        ['label' => 'Contact', 'url' => Url::to(['site/contact'])],
+        ['label' => 'Admin', 'url' => ['admin/']],
+        ['label' => 'Home', 'url' => ['/']],
+        ['label' => 'About', 'url' => ['about/']],
+        ['label' => 'Contact', 'url' => ['contact/']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => Url::to(['site/signup'])];
-        $menuItems[] = ['label' => 'Login', 'url' => Url::to(['site/login'])];
+        $menuItems[] = ['label' => 'Signup', 'url' => Url::to(['signup/'])];
+        $menuItems[] = ['label' => 'Login', 'url' => Url::to(['login/'])];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

@@ -136,11 +136,4 @@ class BrandController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionShowdb()
-    {
-        //$this->layout = 'mytheme';
-        $cats = Brand::find()->all(); //метод получения данных отложенная (ленивая) загрузка
-        return $this->render('showdb', compact('cats'));
-
-    }
 }
