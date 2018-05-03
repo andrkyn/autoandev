@@ -37,12 +37,11 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Бренд', 'url' => Url::to(['brand/'])],
-        ['label' => 'Категория', 'url' => Url::to(['category/'])],
-        ['label' => 'Автомобили', 'url' => Url::to(['car/'])],
-        ['label' => 'Showdb', 'url' => Url::to(['brand/showdb'])], //страница брендов для наглядности
+        ['label' => 'Бренд', 'url' => ['brand/index']],
+        ['label' => 'Категория', 'url' => ['category/index']],
+        ['label' => 'Автомобили', 'url' => ['car/index']],
         ['label' => '|'],
-        ['label' => 'Home', 'url' => Url::to(['site/'])],
+        ['label' => 'Home', 'url' => ['/']],
 
     ];
     if (Yii::$app->user->isGuest) {
