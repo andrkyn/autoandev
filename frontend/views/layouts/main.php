@@ -38,8 +38,8 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Admin', 'url' => Url::to(['admin/'])],
-        ['label' => 'Home', 'url' => Url::to(['/'])],
-        ['label' => 'About', 'url' => Url::to(['about/'])],
+        ['label' => 'Home', 'url' => Url::to(['site/index'])],
+        ['label' => 'About', 'url' => Url::to(['site/about'])],
         ['label' => 'Contact', 'url' => Url::to(['site/contact'])],
     ];
     if (Yii::$app->user->isGuest) {
