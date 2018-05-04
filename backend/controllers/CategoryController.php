@@ -76,13 +76,14 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
-
+        $categories = Category::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
 
@@ -96,13 +97,14 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $categories = Category::find()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
 

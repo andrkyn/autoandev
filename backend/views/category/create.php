@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Create Category';
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$categories = \common\models\Category::find()->all();
 ?>
 <div class="category-create">
 
@@ -16,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'categories' => $categories,
     ]) ?>
 
 </div>
