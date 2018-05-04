@@ -17,7 +17,7 @@ class m180417_132841_create_brand_table extends Migration
             'name' => $this->string(30),
             'slug' => $this->string(30)->notNull()->unique(),
             'img' => $this->string(),
-            'upDate' => $this->integer()->notNull(),
+            'date'=> $this->dateTime()->notNull(),
             'description' => $this->text()
         ]);
     }

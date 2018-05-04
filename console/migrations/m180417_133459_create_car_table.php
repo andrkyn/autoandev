@@ -31,7 +31,7 @@ class m180417_133459_create_car_table extends Migration
             'color' => $this->string(),
             'year' => $this->integer(4),
             'img' => $this->string(),
-            'upDate' => $this->integer(11)->notNull(),
+            'date' => $this->dateTime()->notNull(),
             'description' => $this->text()
         ]);
 

@@ -18,7 +18,7 @@ class m180417_133133_create_category_table extends Migration
             'slug' => $this->string(30)->notNull()->unique(),
             'content' => $this->text(),
             'img' => $this->string(),
-            'upDate' => $this->integer()->notNull(),
+            'date' => $this->dateTime()->notNull(),
             'description' => $this->text()
         ]);
     }
