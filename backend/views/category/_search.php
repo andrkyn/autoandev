@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'img') ?>
 
-    <?= $form->field($model, 'upDate') ?>
+    <?= $form->field($model, 'date') ?>
 
     <?php // echo $form->field($model, 'description') ?>
 

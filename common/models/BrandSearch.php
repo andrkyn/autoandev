@@ -18,8 +18,8 @@ class BrandSearch extends Brand
     public function rules()
     {
         return [
-            [['id', 'upDate'], 'integer'],
-            [['name', 'img', 'description'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'img', 'description','date'], 'safe'],
         ];
     }
 
@@ -60,7 +60,7 @@ class BrandSearch extends Brand
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'upDate' => $this->upDate,
+            'date' => $this->date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

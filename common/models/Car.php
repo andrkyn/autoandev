@@ -46,13 +46,14 @@ class Car extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['brandId', 'categoryId', 'name', 'slug', 'price', 'transmission', 'engine', 'speed', 'drive', 'bodyStyle', 'year', 'img', 'upDate'], 'required'],
-            [['brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year', 'upDate'], 'integer'],
+            [['brandId', 'categoryId', 'name', 'slug', 'price', 'transmission', 'engine', 'speed', 'drive', 'bodyStyle', 'year',], 'required'],
+            [['brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year'], 'integer'],
+            [['date'], 'safe'],
             [['content'], 'string'],
             [['name'], 'string', 'max' => 30],
             [['title', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description'], 'string', 'max' => 255],
-            [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class(), 'targetAttribute' => ['brandId' => 'id']],
-            [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class(), 'targetAttribute' => ['categoryId' => 'id']],
+            [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
+            [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
         ];
     }
 
@@ -80,7 +81,7 @@ class Car extends \yii\db\ActiveRecord
             'color' => 'Color',
             'year' => 'Year',
             'img' => 'Img',
-            'upDate' => 'Up Date',
+            'date' => 'Date',
             'description' => 'Description',
         ];
     }

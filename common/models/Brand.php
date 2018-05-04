@@ -31,8 +31,8 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img', 'upDate', 'slug'], 'required'],
-            [['upDate'], 'integer'],
+            [['name', 'slug'], 'required'],
+            [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
             [['img', 'description'], 'string', 'max' => 255],
         ];
@@ -47,7 +47,8 @@ class Brand extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'img' => 'Img',
-            'upDate' => 'Up Date',
+            'date' => 'Date',
+            'slug' => 'slug',
             'description' => 'Description',
         ];
     }

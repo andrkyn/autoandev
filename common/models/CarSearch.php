@@ -18,8 +18,8 @@ class CarSearch extends Car
     public function rules()
     {
         return [
-            [['id', 'brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year', 'upDate'], 'integer'],
-            [['name', 'title', 'content', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description'], 'safe'],
+            [['id', 'brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year'], 'integer'],
+            [['name', 'title', 'content', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description', 'date'], 'safe'],
         ];
     }
 
@@ -67,7 +67,7 @@ class CarSearch extends Car
             'fuelConsumption' => $this->fuelConsumption,
             'trunkVolume' => $this->trunkVolume,
             'year' => $this->year,
-            'upDate' => $this->upDate,
+            'date' => $this->date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
