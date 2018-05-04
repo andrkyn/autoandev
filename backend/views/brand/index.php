@@ -28,8 +28,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'img',
-            'upDate',
+            //'img',
+            [
+                'attribute'=>'img',
+                'format' => 'html',
+                //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
+                'value'=> function($data){
+                    return Html::img('@web/images/' . $data['img'], ['width' => '100px', 'height' => '80px']);
+
+                    //function($data) {
+                    //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
+                },
+            ],
+            'date',
+            'slug',
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],

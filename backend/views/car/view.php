@@ -29,10 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'brandId',
-            'categoryId',
+            //'brandId',
+            [
+                'attribute' =>'brandId',
+                'value' => function($data) {
+                    return $data->brand->name;
+                }
+            ],
+            //'categoryId',
+            [
+                'attribute' =>'categoryId',
+                'value' => function($data) {
+                    return $data->category->name;
+                }
+            ],
             'name',
             'title',
+            'slug',
             'content:ntext',
             'price',
             'transmission',
@@ -44,8 +57,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'bodyStyle',
             'color',
             'year',
-            'img',
-            'upDate',
+            //'img',
+            [
+                'attribute'=>'img',
+                'format' => 'html',
+                //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
+                'value'=> function($data){
+                    return Html::img('@web/images/' . $data['img']);
+
+                    //function($data) {
+                    //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
+                },
+            ],
+            'date',
             'description',
         ],
     ]) ?>

@@ -26,10 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'brandId',
-            'categoryId',
             'name',
-            'title',
+            //'brandId',
+            [
+                'attribute' =>'brandId',
+                'value' => function($data) {
+                    return $data->brand->name;
+                }
+            ],
+            //'categoryId',
+            [
+                'attribute' =>'categoryId',
+                'value' => function($data) {
+                    return $data->category->name;
+                }
+            ],
+            //'title',
             //'content:ntext',
             //'price',
             //'transmission',
@@ -42,8 +54,18 @@ $this->params['breadcrumbs'][] = $this->title;
             //'color',
             //'year',
             //'img',
-            //'upDate',
-            //'description',
+            [
+            'attribute'=>'img',
+            'format' => 'html',
+            //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
+            'value'=> function($data){
+                return Html::img('@web/images/' . $data['img'], ['width' => '100px', 'height' => '80px']);
+                //function($data) {
+                //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
+            },
+            ],
+            'date',
+            'description',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
