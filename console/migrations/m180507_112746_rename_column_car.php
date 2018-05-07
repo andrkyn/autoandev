@@ -18,9 +18,8 @@ class m180507_112746_rename_column_car extends Migration
 
     public function down()
     {
-        $this->renameColumn('car', 'upDate', 'date');
-        $this->alterColumn('car','date', $this->integer());
-        $this->alterColumn('car','date', $this->timestamp()->defaultExpression('NOW()'));
+        $this->renameColumn('car', 'date', 'upDate');
+        $this->alterColumn('car','upDate', $this->integer(11));
     }
 
 
