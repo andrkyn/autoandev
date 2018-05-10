@@ -35,24 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             //'categoryId',
-            [
+            /*[
                 'attribute' =>'categoryId',
                 'value' => function($data) {
                     return $data->category->name;
                 }
-            ],
-            //'title',
-            //'content:ntext',
-            //'price',
-            //'transmission',
-            //'engine',
-            //'speed',
-            //'fuelConsumption',
-            //'drive',
-            //'trunkVolume',
-            //'bodyStyle',
-            //'color',
-            //'year',
+            ],*/
+            'year',
+            'engine',
             //'img',
             [
             'attribute'=>'img',
@@ -67,8 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'date_modified',
             'description',
-
-            ['class' => 'yii\grid\ActionColumn'],
+           ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

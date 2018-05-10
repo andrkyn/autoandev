@@ -22,31 +22,11 @@ $brands = \common\models\Brand::find()->all();
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?php //$form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?php //$form->field($model, 'content')->textarea(['rows' => 4]) ?>
-
-    <?= $form->field($model, 'price')->textInput() ?>
-
-    <?= $form->field($model, 'slug')->textInput() ?>
-
-    <?= $form->field($model, 'transmission')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'engine')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'speed')->textInput() ?>
-
-    <?= $form->field($model, 'fuelConsumption')->textInput() ?>
-
-    <?= $form->field($model, 'drive')->textInput(['maxlength' => true]) ?>
-
-    <?php // $form->field($model, 'trunkVolume')->textInput() ?>
-
-    <?= $form->field($model, 'bodyStyle')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'year')->textInput() ?>
+
+    <?= $form->field($model, 'slug')->textInput() ?>
 
     <?php // $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
