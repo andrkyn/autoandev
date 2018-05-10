@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "car".
@@ -30,7 +33,7 @@ use Yii;
  * @property Brand $brand
  * @property Category $category
  */
-class Car extends \yii\db\ActiveRecord
+class Car extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -48,7 +51,7 @@ class Car extends \yii\db\ActiveRecord
         return [
             [['brandId', 'categoryId', 'name', 'slug', 'price', 'transmission', 'engine', 'speed', 'drive', 'bodyStyle', 'year',], 'required'],
             [['brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year'], 'integer'],
-            [['date'], 'safe'],
+            [['date', 'date_modified'], 'safe'],
             [['content'], 'string'],
             [['name'], 'string', 'max' => 30],
             [['title', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description'], 'string', 'max' => 255],
@@ -82,13 +85,25 @@ class Car extends \yii\db\ActiveRecord
             'year' => 'Year',
             'img' => 'Img',
             'date' => 'Date',
+            'date_modified' => 'Date modified',
             'description' => 'Description',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('NOW()'),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date_modified'],
+                ],
+            ],
+        ];
+    }
+
+
     public function getBrand()
     {
         return $this->hasOne(Brand::class, ['id' => 'brandId']);

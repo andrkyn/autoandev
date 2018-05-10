@@ -32,6 +32,7 @@ class m180417_133459_create_car_table extends Migration
             'year' => $this->integer(4),
             'img' => $this->string(),
             'upDate' => $this->integer()->notNull(),
+            'date_modified' => $this->timestamp()->defaultExpression('NOW()'),
             'description' => $this->text()
         ]);
 
