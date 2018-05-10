@@ -18,20 +18,10 @@ class m180417_133459_create_car_table extends Migration
             'categoryId' => $this->integer()->notNull(),
             'name' => $this->string(30),
             'slug' => $this->string(30)->notNull()->unique(),
-            'title' => $this->string(),
-            'content' => $this->text(),
-            'price' => $this->integer(6),
-            'transmission' => $this->string()->notNull(),
-            'engine' => $this->string()->notNull(),
-            'speed' => $this->integer(3),
-            'fuelConsumption' => $this->integer(2),
-            'drive' => $this->string()->notNull(),
-            'trunkVolume' => $this->integer(3),
-            'bodyStyle' => $this->string()->notNull(),
-            'color' => $this->string(),
+            'engine' => $this->string(10)->notNull(),     //объем двигателя
             'year' => $this->integer(4),
             'img' => $this->string(),
-            'upDate' => $this->integer()->notNull(),
+            'date' => $this->timestamp()->defaultExpression('NOW()'),
             'date_modified' => $this->timestamp()->defaultExpression('NOW()'),
             'description' => $this->text()
         ]);
