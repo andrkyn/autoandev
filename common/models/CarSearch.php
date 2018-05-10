@@ -18,8 +18,8 @@ class CarSearch extends Car
     public function rules()
     {
         return [
-            [['id', 'brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year'], 'integer'],
-            [['name', 'title', 'content', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description', 'date'], 'safe'],
+            [['id', 'brandId', 'categoryId', 'year'], 'integer'],
+            [['name', 'engine', 'img', 'description', 'date', 'date_modified'], 'safe'],
         ];
     }
 
@@ -62,22 +62,12 @@ class CarSearch extends Car
             'id' => $this->id,
             'brandId' => $this->brandId,
             'categoryId' => $this->categoryId,
-            'price' => $this->price,
-            'speed' => $this->speed,
-            'fuelConsumption' => $this->fuelConsumption,
-            'trunkVolume' => $this->trunkVolume,
             'year' => $this->year,
             'date' => $this->date,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'transmission', $this->transmission])
             ->andFilterWhere(['like', 'engine', $this->engine])
-            ->andFilterWhere(['like', 'drive', $this->drive])
-            ->andFilterWhere(['like', 'bodyStyle', $this->bodyStyle])
-            ->andFilterWhere(['like', 'color', $this->color])
             ->andFilterWhere(['like', 'img', $this->img])
             ->andFilterWhere(['like', 'description', $this->description]);
 
