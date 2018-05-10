@@ -14,17 +14,8 @@ use yii\db\Expression;
  * @property int $brandId
  * @property int $categoryId
  * @property string $name
- * @property string $title
- * @property string $content
- * @property int $price
- * @property string $transmission
  * @property string $engine
  * @property int $speed
- * @property int $fuelConsumption
- * @property string $drive
- * @property int $trunkVolume
- * @property string $bodyStyle
- * @property string $color
  * @property int $year
  * @property string $img
  * @property int $upDate
@@ -49,12 +40,11 @@ class Car extends ActiveRecord
     public function rules()
     {
         return [
-            [['brandId', 'categoryId', 'name', 'slug', 'price', 'transmission', 'engine', 'speed', 'drive', 'bodyStyle', 'year',], 'required'],
-            [['brandId', 'categoryId', 'price', 'speed', 'fuelConsumption', 'trunkVolume', 'year'], 'integer'],
+            [['brandId', 'categoryId', 'name', 'slug', 'engine', 'year',], 'required'],
+            [['brandId', 'categoryId', 'year'], 'integer'],
             [['date', 'date_modified'], 'safe'],
-            [['content'], 'string'],
             [['name'], 'string', 'max' => 30],
-            [['title', 'transmission', 'engine', 'drive', 'bodyStyle', 'color', 'img', 'description'], 'string', 'max' => 255],
+            [['engine', 'img', 'description'], 'string', 'max' => 255],
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
         ];
@@ -70,18 +60,8 @@ class Car extends ActiveRecord
             'brandId' => 'Brand ID',
             'categoryId' => 'Category ID',
             'name' => 'Name',
-            'title' => 'Title',
-            'content' => 'Content',
-            'price' => 'Price',
             'slug' =>'Slug',
-            'transmission' => 'Transmission',
             'engine' => 'Engine',
-            'speed' => 'Speed',
-            'fuelConsumption' => 'Fuel Consumption',
-            'drive' => 'Drive',
-            'trunkVolume' => 'Trunk Volume',
-            'bodyStyle' => 'Body Style',
-            'color' => 'Color',
             'year' => 'Year',
             'img' => 'Img',
             'date' => 'Date',
