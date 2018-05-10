@@ -44,18 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'name',
-            'title',
             'slug',
-            'content:ntext',
-            'price',
-            'transmission',
             'engine',
-            'speed',
-            'fuelConsumption',
-            'drive',
-            'trunkVolume',
-            'bodyStyle',
-            'color',
             'year',
             //'img',
             [
