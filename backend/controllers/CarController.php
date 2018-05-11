@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\Brand;
+use common\models\Category;
 
 /**
  * CarController implements the CRUD actions for Car model.
@@ -75,6 +77,8 @@ class CarController extends Controller
      */
     public function actionCreate()
     {
+        $brands = Brand::find()->all();
+        $categories = Category::find()->all();
         $model = new Car();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -83,6 +87,9 @@ class CarController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'brands' => $brands,
+            'categories' => $categories,
+
         ]);
     }
 
@@ -95,6 +102,8 @@ class CarController extends Controller
      */
     public function actionUpdate($id)
     {
+        $brands = Brand::find()->all();
+        $categories = Category::find()->all();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -103,6 +112,8 @@ class CarController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 
