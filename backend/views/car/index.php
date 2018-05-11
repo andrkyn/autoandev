@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             //'brandId',
             [
-                'attribute' =>'brandId',
-                'value' => function($data) {
+                'attribute' => 'brandId',
+                'value' => function ($data) {
                     return $data->brand->name;
                 }
             ],
@@ -45,19 +45,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'engine',
             //'img',
             [
-            'attribute'=>'img',
-            'format' => 'html',
-            //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
-            'value'=> function($data){
-                return Html::img('@web/images/' . $data['img'], ['width' => '100px', 'height' => '80px']);
-                //function($data) {
-                //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
-            },
+                'attribute' => 'img',
+                'format' => 'html',
+                //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
+                'value' => function ($data) {
+                    return Html::img('@web/images/' . $data['img'], ['width' => '100px', 'height' => '80px']);
+                    //function($data) {
+                    //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
+                },
             ],
             'date',
             'date_modified',
             'description',
-           ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>
