@@ -41,10 +41,12 @@ class Car extends ActiveRecord
     {
         return [
             [['brandId', 'categoryId', 'name', 'slug', 'engine', 'year',], 'required'],
-            [['brandId', 'categoryId', 'year'], 'integer'],
+            [['brandId', 'categoryId'], 'integer', 'min' => 0, 'max' => 999],
+            [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['engine', 'img', 'description'], 'string', 'max' => 255],
+            [['img', 'description'], 'string', 'max' => 255],
+            [['engine'], 'string', 'max' => 10],
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
         ];
