@@ -8,8 +8,6 @@ use yii\helpers\ArrayHelper;
 /* @var $model common\models\Car */
 /* @var $form yii\widgets\ActiveForm */
 
-$categories = \common\models\Category::find()->all();
-$brands = \common\models\Brand::find()->all();
 ?>
 
 <div class="car-form">
