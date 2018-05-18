@@ -40,8 +40,8 @@ class Car extends ActiveRecord
     public function rules()
     {
         return [
-            [['brandId', 'categoryId', 'name', 'slug', 'engine', 'year',], 'required'],
-            [['brandId', 'categoryId'], 'integer', 'min' => 0, 'max' => 999],
+            [['brandId', 'categoryId', 'colorId', 'name', 'slug', 'engine', 'year',], 'required'],
+            [['brandId', 'categoryId', 'colorId'], 'integer', 'min' => 0, 'max' => 999],
             [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
             [['name'], 'string', 'max' => 30],
@@ -49,6 +49,7 @@ class Car extends ActiveRecord
             [['engine'], 'string', 'max' => 10],
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
+            [['colorId'], 'exist', 'skipOnError' => true, 'targetClass' => Color::class, 'targetAttribute' => ['colorId' => 'id']],
         ];
     }
 
@@ -61,6 +62,7 @@ class Car extends ActiveRecord
             'id' => 'ID',
             'brandId' => 'Brand ID',
             'categoryId' => 'Category ID',
+            'colorId' => 'Color',
             'name' => 'Name',
             'slug' =>'Slug',
             'engine' => 'Engine',
@@ -97,5 +99,10 @@ class Car extends ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
+    }
+
+    public function getColor()
+    {
+        return $this->hasOne(Color::class, ['id' => 'colorId']);
     }
 }
