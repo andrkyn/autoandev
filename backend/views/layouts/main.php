@@ -40,6 +40,7 @@ AppAsset::register($this);
         ['label' => 'Бренд', 'url' => ['brand/index']],
         ['label' => 'Категория', 'url' => ['category/index']],
         ['label' => 'Автомобили', 'url' => ['car/index']],
+        ['label' => 'Цвет', 'url' => ['color/index']],
         ['label' => '|'],
         ['label' => 'Home', 'url' => ['/']],
 
