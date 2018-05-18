@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\Brand;
 use common\models\Category;
+use common\models\Color;
 
 /**
  * CarController implements the CRUD actions for Car model.
@@ -79,6 +80,7 @@ class CarController extends Controller
     {
         $brands = Brand::find()->all();
         $categories = Category::find()->all();
+        $colors = Color::find()->all();
         $model = new Car();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -89,6 +91,7 @@ class CarController extends Controller
             'model' => $model,
             'brands' => $brands,
             'categories' => $categories,
+            'colors' => $colors,
 
         ]);
     }
@@ -104,6 +107,7 @@ class CarController extends Controller
     {
         $brands = Brand::find()->all();
         $categories = Category::find()->all();
+        $colors = Color::find()->all();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -114,6 +118,7 @@ class CarController extends Controller
             'model' => $model,
             'brands' => $brands,
             'categories' => $categories,
+            'colors' => $colors,
         ]);
     }
 
