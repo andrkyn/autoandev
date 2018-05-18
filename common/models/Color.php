@@ -29,6 +29,7 @@ class Color extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'code'], 'required'],
             ['is_enabled', 'boolean'],
             [['name'], 'string', 'max' => 30],
             [['code'], 'string', 'min'=>0, 'max' => 6],
