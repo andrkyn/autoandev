@@ -36,7 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'color:white;background-color:#' . $model->code],
             ],
             'code',
-            'is_enabled',
+            //'is_enabled',
+            [
+                'attribute' => 'is_enabled',
+                'value'=> function ($model) {
+                    $data = $model->is_enabled === 1;
+                    return \yii\helpers\Html::tag('span', $data ? 'On' : 'Off',
+                        ['class' => 'label label-' . ($data? 'success' : 'danger'),]
+                    );
+                },
+                'format' => 'html',
+            ],
         ],
     ]) ?>
 
