@@ -43,6 +43,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ],*/
             'year',
             'engine',
+            //'colorId',
+            [
+                'attribute' => 'colorId',
+                //'label'=> 'Name',
+                'value' => function($data) {
+                    return $data->color->name;
+                },
+                'contentOptions' => function ($model) {
+                    return ['style' => ' text-align: center; width: 100px;color:white;background-color:#' . $model->color->code];
+                },
+                'headerOptions' => ['style' => 'text-align: center;'],
+            ],
             //'img',
             [
                 'attribute' => 'img',

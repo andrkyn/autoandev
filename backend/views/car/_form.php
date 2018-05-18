@@ -14,13 +14,15 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'brandId')->dropDownList(ArrayHelper::map($brands, 'id', 'name'), ['prompt' => 'Select Brand']) ?>
+    <?= $form->field($model, 'brandId')->dropDownList(ArrayHelper::map($brands, 'id', 'name'), ['prompt' => '-Select Brand-']) ?>
 
-    <?= $form->field($model, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'name'), ['prompt' => 'Select Category']) ?>
+    <?= $form->field($model, 'categoryId')->dropDownList(ArrayHelper::map($categories, 'id', 'name'), ['prompt' => '-Select Category-']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'engine')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'colorId')->dropDownList(ArrayHelper::map($colors, 'id', 'name'), ['prompt' => '-Select Color-']) ?>
 
     <?= $form->field($model, 'year')->textInput() ?>
 

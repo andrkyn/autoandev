@@ -47,6 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'engine',
             'year',
+            //'colorId',
+            [
+                'attribute' =>'colorId',
+                'value' => $model->color->name,
+                'contentOptions' => ['style' => 'color:white;background-color:#' . $model->color->code],
+            ],
             //'img',
             [
                 'attribute'=>'img',
