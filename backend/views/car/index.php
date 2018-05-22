@@ -43,17 +43,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],*/
             'year',
             'engine',
-            //'colorId',
             [
                 'attribute' => 'colorId',
-                //'label'=> 'Name',
+                'format' => 'html',
                 'value' => function($data) {
-                    return $data->color->name;
+                    return Html::tag('span', $data->color->name,
+                        ['class' => 'label label-', 'style' => 'color:black; background-color:white' ]);
                 },
                 'contentOptions' => function ($model) {
-                    return ['style' => ' text-align: center; width: 100px;color:white;background-color:#' . $model->color->code];
+                    return ['style' => 'text-align:center; width:100px; background-color:#' . $model->color->code];
                 },
-                'headerOptions' => ['style' => 'text-align: center;'],
             ],
             //'img',
             [
