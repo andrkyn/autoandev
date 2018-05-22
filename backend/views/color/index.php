@@ -22,23 +22,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
-            //'code',
-            //'name',
             [
                 'attribute' => 'code',
+                'format' => 'html',
                 'label'=> 'Name',
-                'value' => 'name',
-                'contentOptions' => function ($model) {
-                    return ['style' => ' text-align: center; width: 100px;color:white;background-color:#' . $model->code];
+                'value' => function($data) {
+                    return Html::tag('span', $data->code,
+                        ['class' => 'label label-', 'style' => 'color: black;background-color: white' ]);
                 },
-                'headerOptions' => ['style' => 'text-align: center;'],
+                'contentOptions' => function ($model) {
+                    return ['style' => 'text-align: center; width: 100px; background-color:#' . $model->code];
+                },
             ],
-            //'is_enabled',
             [
                 'attribute' => 'is_enabled',
                 'value'=> function ($model) {
                     $data = $model->is_enabled === 1;
-                     return \yii\helpers\Html::tag('span', $data ? 'On' : 'Off',
+                     return Html::tag('span', $data ? 'On' : 'Off',
                          ['class' => 'label label-' . ($data? 'success' : 'danger'),]
                      );
                 },

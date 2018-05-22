@@ -28,15 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            //'name',
             [
                 'attribute' =>'name',
-                'value' => $model->name,
-                'contentOptions' => ['style' => 'color:white;background-color:#' . $model->code],
+                'format' => 'html',
+                'value' => function($data) {
+                    return Html::tag('span', $data->name,
+                        ['class' => 'label label-', 'style' => 'color: black;background-color: white' ]);
+                },
+                'contentOptions' => ['style' => 'background-color:#' . $model->code],
             ],
             'code',
-            //'is_enabled',
             [
                 'attribute' => 'is_enabled',
                 'value'=> function ($model) {
