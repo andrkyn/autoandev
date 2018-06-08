@@ -18,8 +18,7 @@ class m180516_121608_add_color_column_car extends Migration
             'car',
             'colorId',
             'color',
-            'id',
-            'CASCADE'
+            'id'
         );
     }
 
