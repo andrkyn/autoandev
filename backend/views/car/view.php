@@ -24,23 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             //'brandId',
             [
-                'attribute' =>'brandId',
-                'value' => function($data) {
-                    return $data->brand->name;
+                'attribute' => 'brandId',
+                'value' => function ($data) {
+                return $data->brand->name;
                 }
             ],
             //'categoryId',
             [
-                'attribute' =>'categoryId',
-                'value' => function($data) {
-                    return $data->category->name;
+                'attribute' => 'categoryId',
+                'value' => function ($data) {
+                return $data->category->name;
                 }
             ],
             'name',
@@ -48,20 +47,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'engine',
             'year',
             [
-                'attribute' =>'colorId',
+                'attribute' => 'colorId',
                 'format' => 'html',
-                'value' => function($data) {
-                    return Html::tag('span', $data->color->name,
-                        ['class' => 'label label-', 'style' => 'color:black; background-color:white' ]);
-                },
-                'contentOptions' => ['style' => 'background-color:#' . $model->color->code],
+                'value' =>(isset($model->color) ? Html::tag('span', $model->color->name,
+                    ['class' => 'label label-', 'style' => 'color:black; background-color:white']) : 'not color'),
+                'contentOptions' => (isset($model->color) ? ['style' => 'background-color:#' . ($model->color->code)] :
+                    ['style' => 'background-color:white']),
+
             ],
             //'img',
             [
-                'attribute'=>'img',
+                'attribute' => 'img',
                 'format' => 'html',
                 //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
-                'value'=> function($data){
+                'value' => function ($data) {
                     //return Html::img('@web/images/' . $data['img']);
                     return Html::img('/backend/web/images/' . $data->img);
 

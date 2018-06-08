@@ -46,12 +46,21 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'colorId',
                 'format' => 'html',
-                'value' => function($data) {
-                    return Html::tag('span', $data->color->name,
-                        ['class' => 'label label-', 'style' => 'color:black; background-color:white' ]);
+                'value' => function ($data) {
+                    if (!isset($data->color->name)) {
+                        return Html::tag('span', 'not color',
+                            ['class' => 'label label-', 'style' => 'color:black; background-color:white']);
+                    } else {
+                        return Html::tag('span', $data->color->name,
+                            ['class' => 'label label-', 'style' => 'color:black; background-color:white']);
+                    }
                 },
-                'contentOptions' => function ($model) {
-                    return ['style' => 'text-align:center; width:100px; background-color:#' . $model->color->code];
+                'contentOptions' => function ($data) {
+                    if (!isset($data->color->code)) {
+                        return ['style' => 'text-align:center; width:100px; background-color:white'];
+                    } else {
+                        return ['style' => 'text-align:center; width:100px; background-color:#' . $data->color->code];
+                    }
                 },
             ],
             //'img',

@@ -40,8 +40,8 @@ class Car extends ActiveRecord
     public function rules()
     {
         return [
-            [['brandId', 'categoryId', 'colorId', 'name', 'slug', 'engine', 'year'], 'required'],
-            [['brandId', 'categoryId', 'colorId'], 'integer', 'min' => 0, 'max' => 999],
+            [['brandId', 'categoryId', 'name', 'slug', 'engine', 'year'], 'required'],
+            [['brandId', 'categoryId'], 'integer', 'min' => 0, 'max' => 999],
             [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
             [['name'], 'string', 'max' => 30],
@@ -105,4 +105,5 @@ class Car extends ActiveRecord
     {
         return $this->hasOne(Color::class, ['id' => 'colorId']);
     }
+
 }
