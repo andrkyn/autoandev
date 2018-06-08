@@ -15,6 +15,7 @@ class m180516_120707_create_color_table extends Migration
         $this->createTable('color', [
             'id' => $this->primaryKey(),
             'name' => $this->string(30),
+            'code' => $this->string(6),
             'is_enabled' => $this->boolean(),
         ]);
     }
