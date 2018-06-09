@@ -49,10 +49,25 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'colorId',
                 'format' => 'html',
-                'value' =>(isset($model->color) ? Html::tag('span', $model->color->name,
-                    ['class' => 'label label-', 'style' => 'color:black; background-color:white']) : 'not color'),
+                //'value' =>(isset($model->color) ? Html::tag('span', $model->color->name,
+                    //['class' => 'label label-', 'style' => 'color:black; background-color:white']) : 'not color'),
                 'contentOptions' => (isset($model->color) ? ['style' => 'background-color:#' . ($model->color->code)] :
                     ['style' => 'background-color:white']),
+                'value' => function ($data) {
+                    if (isset($data->color)) {
+                        return Html::tag('span', $data->color->name,
+                            ['class' => 'label label-', 'style' => 'color:black; background-color:white']);
+                    }else {
+                        return Html::tag('span', 'not color');
+                    }
+                 },
+                 /*'contentOptions' => function ($data) {
+                     if (isset($data->color)) {
+                         return ['style' => 'background-color:#' . ($data->color->code)];
+                     }else {
+                         return ['style' => 'background-color:white'];
+                     }
+                 },*/
 
             ],
             //'img',
