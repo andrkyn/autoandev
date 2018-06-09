@@ -78,10 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     //return Html::img('@web/images/' . $data['img']);
                     return Html::img('/backend/web/images/' . $data->img);
-
-                    //function($data) {
-                    //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
                 },
+
             ],
             'date:datetime',
             'date_modified:datetime',
@@ -90,3 +88,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
