@@ -10,8 +10,6 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Cars', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-<?php //var_dump($codecol); ?>
 <div class="car-view">
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
