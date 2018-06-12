@@ -10,10 +10,10 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Cars', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php //var_dump($codecol); ?>
 <div class="car-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -49,10 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'colorId',
                 'format' => 'html',
-                //'value' =>(isset($model->color) ? Html::tag('span', $model->color->name,
-                    //['class' => 'label label-', 'style' => 'color:black; background-color:white']) : 'not color'),
-                'contentOptions' => (isset($model->color) ? ['style' => 'background-color:#' . ($model->color->code)] :
-                    ['style' => 'background-color:white']),
                 'value' => function ($data) {
                     if (isset($data->color)) {
                         return Html::tag('span', $data->color->name,
@@ -61,14 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::tag('span', 'not color');
                     }
                  },
-                 /*'contentOptions' => function ($data) {
-                     if (isset($data->color)) {
-                         return ['style' => 'background-color:#' . ($data->color->code)];
-                     }else {
-                         return ['style' => 'background-color:white'];
-                     }
-                 },*/
-
+                'contentOptions' => ['style' => 'color:black; background-color:#' . $codecol->code],
             ],
             //'img',
             [
