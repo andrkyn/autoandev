@@ -66,8 +66,16 @@ class CarController extends Controller
      */
     public function actionView($id)
     {
+        $car = Car::findOne($id);
+        $colorId = $car->colorId;
+        if (isset($colorId)) {
+            $codecol = Color::findOne(['id' => $colorId]);
+        } else {
+            $codecol = new Color();
+            $codecol->code = 'FFFFFF';
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id), 'codecol' => $codecol,
         ]);
     }
 
