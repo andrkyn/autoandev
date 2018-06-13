@@ -26,8 +26,6 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'year')->textInput() ?>
 
-    <?= $form->field($model, 'slug')->textInput() ?>
-
     <?php // $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
     <?php // $form->field($model, 'date')->textInput() ?>
