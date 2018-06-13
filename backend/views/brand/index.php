@@ -40,8 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //return Html::img(Yii::getAlias('@web').'/images/'. $data['img'], ['width' => '70px']);
                 },
             ],
-            'date',
-            'slug',
+            'date:datetime',
             'description',
 
             ['class' => 'yii\grid\ActionColumn'],
