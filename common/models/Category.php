@@ -3,6 +3,11 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+
 
 /**
  * This is the model class for table "category".
@@ -16,7 +21,7 @@ use Yii;
  *
  * @property Car[] $cars
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -32,7 +37,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name'], 'required'],
             [['content'], 'string'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
@@ -51,8 +56,26 @@ class Category extends \yii\db\ActiveRecord
             'content' => 'Content',
             'img' => 'Img',
             'slug' => 'Slug',
-            'date' => 'Date',
+            'date' => 'Date created',
             'description' => 'Description',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

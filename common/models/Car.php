@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\db\Expression;
 
 /**
@@ -40,7 +41,7 @@ class Car extends ActiveRecord
     public function rules()
     {
         return [
-            [['brandId', 'categoryId', 'name', 'slug', 'engine', 'year'], 'required'],
+            [['brandId', 'categoryId', 'name', 'engine', 'year'], 'required'],
             [['brandId', 'categoryId'], 'integer', 'min' => 0, 'max' => 999],
             [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
@@ -68,7 +69,7 @@ class Car extends ActiveRecord
             'engine' => 'Engine',
             'year' => 'Year',
             'img' => 'Img',
-            'date' => 'Date',
+            'date' => 'Date created',
             'date_modified' => 'Date modified',
             'description' => 'Description',
         ];
@@ -78,11 +79,17 @@ class Car extends ActiveRecord
     {
         return [
             [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+            ],
+            [
                 'class' => TimestampBehavior::class,
                 'value' => new Expression('NOW()'),
                 'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['date_modified'],
-                ],
+                 ],
             ],
         ];
     }
