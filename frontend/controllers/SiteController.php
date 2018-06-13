@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Category;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -85,8 +86,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $brands = Brand::find()->all();
-
         return $this->render('index', compact('brands'));
+    }
+
+    public function actionView($id)
+    {
+        $brand = Brand::find()->where(['slug'=>$id])->one();
+        return $this->render('view', ['brand'=>$brand]);
     }
 
 

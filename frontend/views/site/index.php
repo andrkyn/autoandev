@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -12,7 +13,7 @@ $this->title = 'My Yii Application';
         <?php if (!empty($brands)): ?>
             <?php foreach ($brands as $brand): ?>
                  <ul>
-                     <a href="#" class="product_title"><?= $brand->name ?></a>
+                     <a href="<?=Url::to(['/site/view', 'id'=>$brand->slug])?>" class="product_title"><?= $brand->name ?></a>
                  </ul>
 
             <?php endforeach; ?>
