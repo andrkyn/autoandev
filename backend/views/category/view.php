@@ -35,7 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'date:datetime',
             'description',
+            'image_web',
+            'image_src',
         ],
     ]) ?>
+
+    <?php
+    if ($model->image_web!='') {
+        echo '<br /><p><img src="'.Yii::$app->homeUrl. '/web/images/uploads/'.$model->image_web.'"></p>';
+    }
+    ?>
 
 </div>

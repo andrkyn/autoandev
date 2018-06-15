@@ -23,9 +23,10 @@ use yii\db\Expression;
  */
 class Category extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    const PERMISSIONS_PRIVATE = 10;
+    const PERMISSIONS_PUBLIC = 20;
+    public $image;
+
     public static function tableName()
     {
         return 'category';
@@ -41,7 +42,10 @@ class Category extends ActiveRecord
             [['content'], 'string'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['img', 'description'], 'string', 'max' => 255],
+            [['image'], 'safe'],
+            [['image'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['image'], 'file', 'maxSize'=>'100000'],
+            [['img', 'description', 'image_src', 'image_web'], 'string', 'max' => 255],
         ];
     }
 
@@ -58,6 +62,8 @@ class Category extends ActiveRecord
             'slug' => 'Slug',
             'date' => 'Date created',
             'description' => 'Description',
+            'image_src' => Yii::t('app', 'Filename'),
+            'image_web' => Yii::t('app', 'Pathname'),
         ];
     }
 
