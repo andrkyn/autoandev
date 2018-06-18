@@ -27,21 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            //'content:ntext',
-            //'slug',
-            'img',
             'date:datetime',
-            //'description',
-            [
-                'attribute' => 'Image',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    if ($model->image_web!='')
-                        return '<img src="'.Yii::$app->homeUrl. '/web/images/uploads/'.$model->image_web.'" width="50px" height="auto">'; else return 'no image';
-                },
-            ],
+            'viewImage:image',
             ['class' => 'yii\grid\ActionColumn'],
-
             ],
     ]); ?>
 </div>

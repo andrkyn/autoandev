@@ -58,16 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'color:black; background-color:#' . $codecol->code],
             ],
             //'img',
-            [
-                'attribute' => 'img',
-                'format' => 'html',
-                //'value' =>Html::img("@web/images/{$model->img}", ['alt' => $model->name]),
-                'value' => function ($data) {
-                    //return Html::img('@web/images/' . $data['img']);
-                    return Html::img('/backend/web/images/' . $data->img);
-                },
-
-            ],
+            'viewImage:image',
             'date:datetime',
             'date_modified:datetime',
             'description',
