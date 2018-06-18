@@ -7,6 +7,10 @@ use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\web\UploadedFile;
+//use yii\widgets\ActiveForm;
+//use kartik\file\FileInput;
+use yii\helpers\Url;
 
 
 /**
@@ -23,9 +27,8 @@ use yii\db\Expression;
  */
 class Category extends ActiveRecord
 {
-    const PERMISSIONS_PRIVATE = 10;
-    const PERMISSIONS_PUBLIC = 20;
-    public $image;
+
+    public $file;
 
     public static function tableName()
     {
@@ -38,14 +41,15 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            //[['name'], 'required'],
             [['content'], 'string'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['image'], 'safe'],
             [['image'], 'file', 'extensions'=>'jpg, gif, png'],
             [['image'], 'file', 'maxSize'=>'100000'],
-            [['img', 'description', 'image_src', 'image_web'], 'string', 'max' => 255],
+            [['image'], 'string', 'max' => 100],
+            [['file'], 'image'],
+            [['description' ], 'string', 'max' => 255],
         ];
     }
 
@@ -58,12 +62,12 @@ class Category extends ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'content' => 'Content',
-            'img' => 'Img',
             'slug' => 'Slug',
             'date' => 'Date created',
             'description' => 'Description',
-            'image_src' => Yii::t('app', 'Filename'),
-            'image_web' => Yii::t('app', 'Pathname'),
+            'image' => 'Filename',
+            'file' => 'Set image',
+            'viewImage' => 'Image',
         ];
     }
 
@@ -92,4 +96,51 @@ class Category extends ActiveRecord
     {
         return $this->hasMany(Car::class, ['categoryId' => 'id']);
     }
+
+    public function beforeSave ($insert)
+    {
+        if ($file = UploadedFile::getInstance($this,'file')) {
+            $dir = Yii::getAlias ('@images').'/category/';
+            if ($this->image && file_exists($dir . $this->image)) {
+                unlink($dir . $this->image);
+            }
+            if ($this->image && file_exists($dir . '50x50/' . $this->image)) {
+                unlink($dir . '50x50/' . $this->image);
+            }
+            if ($this->image && file_exists($dir . '800x/' . $this->image)) {
+                unlink($dir . '800x/' . $this->image);
+            }
+            if ($this->image && file_exists($dir . '250x/' . $this->image)) {
+                unlink($dir . '250x/' . $this->image);
+            }
+            $this ->image = strtotime ('now').'_'.Yii::$app->getSecurity()->generateRandomString(6) .'.'. $file->extension;
+            $file ->saveAs($dir.$this->image);
+            $imag = Yii::$app->image->load($dir.$this->image);
+            $imag ->background ('#fff',0);
+            $imag ->resize ('50','50', Yii\image\drivers\Image::INVERSE);
+            $imag ->crop ('50','50');
+            $imag ->save($dir.'50x50/'.$this->image, 90);
+            $imag = Yii::$app->image->load($dir.$this->image);
+            $imag->background('#fff',0);
+            $imag->resize('800',null, Yii\image\drivers\Image::INVERSE);
+            $imag->save($dir.'800x/'.$this->image, 90);
+            $imag->background('#fff',0);
+            $imag->resize('250',null, Yii\image\drivers\Image::INVERSE);
+            $imag->save($dir.'250x/'.$this->image, 90);
+
+        }
+        return parent::beforeSave($insert);
+    }
+
+
+    public function getViewImage() {
+
+        if($this->image){
+            $path = str_replace('admin','',Url::home(true)).'backend/web/uploads/images/category/250x/'. $this->image;
+        }else {
+            $path = str_replace('admin', '', Url::home(true)) . 'backend/web/uploads/images/noimage.svg';
+        }
+        return $path;
+    }
+
 }
