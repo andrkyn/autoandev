@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b7a6104bc2a6d70c9f1833ece0c36be",
+    "content-hash": "c9c9e1c3f70250624dcd4ed92a76819f",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -433,6 +433,58 @@
             "time": "2017-09-29T06:18:14+00:00"
         },
         {
+            "name": "kartik-v/yii2-widget-activeform",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-activeform.git",
+                "reference": "87a35a829f5842f0ff88113e90e24489e9c57abf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-activeform/zipball/87a35a829f5842f0ff88113e90e24489e9c57abf",
+                "reference": "87a35a829f5842f0ff88113e90e24489e9c57abf",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\form\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Enhanced Yii2 active-form and active-field with full bootstrap styling support (sub repo split from yii2-widgets).",
+            "homepage": "https://github.com/kartik-v/yii2-widget-activeform",
+            "keywords": [
+                "activefield",
+                "activeform",
+                "extension",
+                "field",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-03-17T05:06:02+00:00"
+        },
+        {
             "name": "kartik-v/yii2-widget-fileinput",
             "version": "dev-master",
             "source": {
@@ -809,6 +861,49 @@
                 "yii2"
             ],
             "time": "2018-04-27T09:50:51+00:00"
+        },
+        {
+            "name": "yurkinx/yii2-image",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yurkinx/yii2-image.git",
+                "reference": "2737b1ef4cefbc4c664892c6b9f29847fcf72c56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/2737b1ef4cefbc4c664892c6b9f29847fcf72c56",
+                "reference": "2737b1ef4cefbc4c664892c6b9f29847fcf72c56",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\image\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yuri Kileev",
+                    "email": "kileev@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension for image manipulating using Kohana Image Library.",
+            "homepage": "https://github.com/yurkinx/yii2-image",
+            "keywords": [
+                "extension",
+                "image",
+                "yii2"
+            ],
+            "time": "2016-12-08T19:34:11+00:00"
         }
     ],
     "packages-dev": [
@@ -1152,12 +1247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "7ba434d90a90b913697dd336af8120b9d9df3078"
+                "reference": "0e75a618115e7999b29ac12b8112fd259ad3fe7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7ba434d90a90b913697dd336af8120b9d9df3078",
-                "reference": "7ba434d90a90b913697dd336af8120b9d9df3078",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/0e75a618115e7999b29ac12b8112fd259ad3fe7a",
+                "reference": "0e75a618115e7999b29ac12b8112fd259ad3fe7a",
                 "shasum": ""
             },
             "require": {
@@ -1194,7 +1289,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-06-14T21:18:20+00:00"
+            "time": "2018-06-18T06:25:56+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3457,7 +3552,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "yurkinx/yii2-image": 20,
+        "kartik-v/yii2-widget-activeform": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
