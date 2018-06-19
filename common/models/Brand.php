@@ -94,6 +94,11 @@ class Brand extends ActiveRecord
     {
         if ($file = UploadedFile::getInstance($this,'file')) {
             $dir = Yii::getAlias ('@images').'/brand/';
+            if(!file_exists($dir)){
+                mkdir($dir . '/150x/', 0775, true);
+                mkdir($dir . '/50x50/', 0775, true);
+                mkdir($dir . '/800x/', 0775, true);
+            }else{ echo 'Folder exists'; }
             if ($this->image && file_exists($dir . $this->image)) {
                 unlink($dir . $this->image);
             }

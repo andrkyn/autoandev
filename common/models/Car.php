@@ -121,6 +121,12 @@ class Car extends ActiveRecord
     {
         if ($file = UploadedFile::getInstance($this,'file')) {
             $dir = Yii::getAlias ('@images').'/car/';
+            if(!file_exists($dir)){
+                mkdir($dir . '/250x/', 0775, true);
+                mkdir($dir . '/50x50/', 0775, true);
+                mkdir($dir . '/800x/', 0775, true);
+                mkdir($dir . '/80x/', 0775, true);
+            }else{ echo 'Folder exists'; }
             if ($this->image && file_exists($dir . $this->image)) {
                 unlink($dir . $this->image);
             }
