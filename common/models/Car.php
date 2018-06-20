@@ -46,11 +46,9 @@ class Car extends ActiveRecord
             [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['image'], 'file', 'extensions'=>'jpg, gif, png'],
-            [['image'], 'file', 'maxSize'=>'100000'],
-            [['image'], 'string', 'max' => 100],
+            [['image'], 'file', 'extensions'=>'jpg, gif, png', 'maxSize'=>'100000'],
             [['file'], 'image'],
-            [['description'], 'string', 'max' => 255],
+            [['description', 'image'], 'string', 'max' => 255],
             [['engine'], 'string', 'max' => 10],
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
@@ -167,9 +165,9 @@ class Car extends ActiveRecord
     public function getViewImage() {
 
         if($this->image){
-            $path = str_replace('admin','',Url::home(true)).'backend/web/uploads/images/car/250x/'. $this->image;
+            $path = str_replace('admin','',Url::home()).'backend/web/images/car/250x/'. $this->image;
         }else {
-            $path = str_replace('admin', '', Url::home(true)) . 'backend/web/uploads/images/noimage.svg';
+            $path = str_replace('admin', '', Url::home()) . 'backend/web/images/noimage.svg';
         }
         return $path;
     }
@@ -177,9 +175,9 @@ class Car extends ActiveRecord
     public function getSmallImage() {
 
     if($this->image){
-        $path = str_replace('admin','',Url::home(true)).'backend/web/uploads/images/car/80x/'. $this->image;
+        $path = str_replace('admin','',Url::home()).'backend/web/images/car/80x/'. $this->image;
     }else {
-        $path = str_replace('admin', '', Url::home(true)) . 'backend/web/uploads/images/noimage.svg';
+        $path = str_replace('admin', '', Url::home()) . 'backend/web/images/noimage.svg';
     }
     return $path;
 }
