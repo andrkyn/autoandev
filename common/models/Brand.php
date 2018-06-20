@@ -39,8 +39,7 @@ class Brand extends ActiveRecord
             [['name'], 'required'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['image'], 'file', 'extensions' => 'jpg, gif, png', 'maxSize' => '100000'],
-            [['file'], 'image'],
+            [['file'], 'image', 'extensions'=>'jpg, gif, png', 'maxSize'=>'99000'],
             [['description'], 'string', 'max' => 255],
         ];
     }

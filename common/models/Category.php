@@ -45,8 +45,7 @@ class Category extends ActiveRecord
             [['content'], 'string'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['image'], 'file', 'extensions'=>'jpg, gif, png', 'maxSize'=>'100000'],
-            [['file'], 'image'],
+            [['file'], 'image', 'extensions'=>'jpg, gif, png', 'maxSize'=>'99000'],
             [['description'], 'string', 'max' => 255],
         ];
     }
@@ -63,7 +62,7 @@ class Category extends ActiveRecord
             'slug' => 'Slug',
             'date' => 'Date created',
             'description' => 'Description',
-            'image' => 'Filename',
+            'image' => 'Image file',
             'file' => 'Set image',
             'viewImage' => 'Image',
         ];
