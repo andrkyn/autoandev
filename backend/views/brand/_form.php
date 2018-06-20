@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\DetailView;
 use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
@@ -18,14 +17,22 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'viewImage:image',
-        ],
-    ]) ?>
-
-    <?= $form->field($model, 'file')->widget(FileInput::class, [ 'options' => ['accept' => 'image/*'],]); ?>
+    <?= $form->field($model, 'file')->widget(FileInput::class, [
+        'options' => ['accept' => 'image/*'],
+        'pluginOptions' => [
+            'name' => $model->image,
+            'deleteUrl' => \yii\helpers\Url::toRoute(['brand/delete-image', 'id' => $model->id]),
+            'initialPreviewShowDelete' => true,
+            'showPreview' => true,
+            'showCaption' => true,
+            'showRemove' => true,
+            'showUpload' => true,
+            'pluginLoading' => true,
+            'initialPreview' => [
+                '<img src="' . $model->viewImage . '" class="file-preview-image">'
+            ],
+        ]
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
