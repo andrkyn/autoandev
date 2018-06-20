@@ -120,13 +120,19 @@ class BrandController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Brand model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Brand the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionDeleteImage($id)
+    {
+        $model = $this->findModel($id);
+        $imgName = $model->image;
+        unlink(Yii::getAlias('@images') . '/brand/150x/' . $imgName);
+        unlink(Yii::getAlias('@images') . '/brand/50x50/' . $imgName);
+        unlink(Yii::getAlias('@images') . '/brand/800x/' . $imgName);
+        unlink(Yii::getAlias('@images') . '/brand/' . $imgName);
+        $model->image = null;
+        $model->update();
+        return $this->redirect(['update', 'id' => $model->id]);
+    }
+
     protected function findModel($id)
     {
         if (($model = Brand::findOne($id)) !== null) {

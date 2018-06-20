@@ -122,13 +122,19 @@ class CategoryController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Category model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Category the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionDeleteImage($id)
+    {
+        $model = $this->findModel($id);
+        $imgName = $model->image;
+        unlink(Yii::getAlias('@images').'/category/250x/'.$imgName);
+        unlink(Yii::getAlias('@images').'/category/50x50/'.$imgName);
+        unlink(Yii::getAlias('@images').'/category/800x/'.$imgName);
+        unlink(Yii::getAlias('@images').'/category/'.$imgName);
+        $model->image = null;
+        $model->update();
+        return $this->redirect(['update', 'id' => $model->id]);
+    }
+
     protected function findModel($id)
     {
         if (($model = Category::findOne($id)) !== null) {
