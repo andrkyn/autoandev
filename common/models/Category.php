@@ -47,7 +47,7 @@ class Category extends ActiveRecord
             [['name'], 'string', 'max' => 30],
             [['image'], 'file', 'extensions'=>'jpg, gif, png', 'maxSize'=>'100000'],
             [['file'], 'image'],
-            [['description', 'image'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 255],
         ];
     }
 
@@ -141,12 +141,11 @@ class Category extends ActiveRecord
     public function getViewImage() {
 
         if($this->image){
-            $path = str_replace('admin','',Url::home()).'backend/web/images/category/250x/'. $this->image;
+          $path = Url::home().'images/category/250x/'. $this->image;
         }else {
-            $path = str_replace('admin', '', Url::home()) . 'backend/web/images/noimage.svg';
+          $path = Url::home().'images/noimage.svg'. $this->image;
         }
         return $path;
     }
-
 
 }

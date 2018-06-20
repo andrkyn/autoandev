@@ -46,9 +46,9 @@ class Car extends ActiveRecord
             [['year'], 'integer', 'min' => 1801, 'max' => 3001],
             [['date', 'date_modified'], 'safe'],
             [['name'], 'string', 'max' => 30],
-            [['image'], 'file', 'extensions'=>'jpg, gif, png', 'maxSize'=>'100000'],
+            [['image'], 'file', 'extensions' => 'jpg, gif, png', 'maxSize' => '100000'],
             [['file'], 'image'],
-            [['description', 'image'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 255],
             [['engine'], 'string', 'max' => 10],
             [['brandId'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::class, 'targetAttribute' => ['brandId' => 'id']],
             [['categoryId'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categoryId' => 'id']],
@@ -67,7 +67,7 @@ class Car extends ActiveRecord
             'categoryId' => 'Category ID',
             'colorId' => 'Color',
             'name' => 'Name',
-            'slug' =>'Slug',
+            'slug' => 'Slug',
             'engine' => 'Engine',
             'year' => 'Year',
             'image' => 'Image',
@@ -91,7 +91,7 @@ class Car extends ActiveRecord
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['date'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['date_modified'],
-                 ],
+                ],
             ],
         ];
     }
@@ -115,16 +115,18 @@ class Car extends ActiveRecord
         return $this->hasOne(Color::class, ['id' => 'colorId']);
     }
 
-    public function beforeSave ($insert)
+    public function beforeSave($insert)
     {
-        if ($file = UploadedFile::getInstance($this,'file')) {
-            $dir = Yii::getAlias ('@images').'/car/';
-            if(!file_exists($dir)){
+        if ($file = UploadedFile::getInstance($this, 'file')) {
+            $dir = Yii::getAlias('@images') . '/car/';
+            if (!file_exists($dir)) {
                 mkdir($dir . '/250x/', 0775, true);
                 mkdir($dir . '/50x50/', 0775, true);
                 mkdir($dir . '/800x/', 0775, true);
                 mkdir($dir . '/80x/', 0775, true);
-            }else{ echo 'Folder exists'; }
+            } else {
+                echo 'Folder exists';
+            }
             if ($this->image && file_exists($dir . $this->image)) {
                 unlink($dir . $this->image);
             }
@@ -140,45 +142,47 @@ class Car extends ActiveRecord
             if ($this->image && file_exists($dir . '80x/' . $this->image)) {
                 unlink($dir . '80x/' . $this->image);
             }
-            $this ->image = strtotime ('now').'_'.Yii::$app->getSecurity()->generateRandomString(6) .'.'. $file->extension;
-            $file ->saveAs($dir.$this->image);
-            $imag = Yii::$app->image->load($dir.$this->image);
-            $imag ->background ('#fff',0);
-            $imag ->resize ('50','50', Yii\image\drivers\Image::INVERSE);
-            $imag ->crop ('50','50');
-            $imag ->save($dir.'50x50/'.$this->image, 90);
-            $imag = Yii::$app->image->load($dir.$this->image);
-            $imag->background('#fff',0);
-            $imag->resize('800',null, Yii\image\drivers\Image::INVERSE);
-            $imag->save($dir.'800x/'.$this->image, 90);
-            $imag->background('#fff',0);
-            $imag->resize('250',null, Yii\image\drivers\Image::INVERSE);
-            $imag->save($dir.'250x/'.$this->image, 90);
-            $imag->resize('80',null, Yii\image\drivers\Image::INVERSE);
-            $imag->save($dir.'80x/'.$this->image, 90);
+            $this->image = strtotime('now') . '_' . Yii::$app->getSecurity()->generateRandomString(6) . '.' . $file->extension;
+            $file->saveAs($dir . $this->image);
+            $imag = Yii::$app->image->load($dir . $this->image);
+            $imag->background('#fff', 0);
+            $imag->resize('50', '50', Yii\image\drivers\Image::INVERSE);
+            $imag->crop('50', '50');
+            $imag->save($dir . '50x50/' . $this->image, 90);
+            $imag = Yii::$app->image->load($dir . $this->image);
+            $imag->background('#fff', 0);
+            $imag->resize('800', null, Yii\image\drivers\Image::INVERSE);
+            $imag->save($dir . '800x/' . $this->image, 90);
+            $imag->background('#fff', 0);
+            $imag->resize('250', null, Yii\image\drivers\Image::INVERSE);
+            $imag->save($dir . '250x/' . $this->image, 90);
+            $imag->resize('80', null, Yii\image\drivers\Image::INVERSE);
+            $imag->save($dir . '80x/' . $this->image, 90);
 
         }
         return parent::beforeSave($insert);
     }
 
 
-    public function getViewImage() {
+    public function getViewImage()
+    {
 
-        if($this->image){
-            $path = str_replace('admin','',Url::home()).'backend/web/images/car/250x/'. $this->image;
-        }else {
+        if ($this->image) {
+            $path = str_replace('admin', '', Url::home()) . 'backend/web/images/car/250x/' . $this->image;
+        } else {
             $path = str_replace('admin', '', Url::home()) . 'backend/web/images/noimage.svg';
         }
         return $path;
     }
 
-    public function getSmallImage() {
+    public function getSmallImage()
+    {
 
-    if($this->image){
-        $path = str_replace('admin','',Url::home()).'backend/web/images/car/80x/'. $this->image;
-    }else {
-        $path = str_replace('admin', '', Url::home()) . 'backend/web/images/noimage.svg';
+        if ($this->image) {
+            $path = Url::home() . 'images/car/80x/' . $this->image;
+        } else {
+            $path = Url::home() . 'images/noimage.svg' . $this->image;
+        }
+        return $path;
     }
-    return $path;
-}
 }
