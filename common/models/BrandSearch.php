@@ -64,7 +64,6 @@ class BrandSearch extends Brand
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'img', $this->image])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
